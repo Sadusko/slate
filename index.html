@@ -169,6 +169,38 @@ See <a href="#IRocketConfiguration">IRocketConfiguration</a> for details on how 
 
           <h1 id="configuration">Configuration</h1>
 
+<p>IRocketConfiguration</p>
+<pre class="highlight csharp"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">MyFancyConfiguration</span> <span class="p">:</span> <span class="n">IRocketConfiguration</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="n">IRocketConfiguration</span> <span class="n">DefaultConfiguration</span><span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span>
+            <span class="n">MyFancyConfiguration</span> <span class="n">configuration</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">MyFancyConfiguration</span><span class="p">();</span>
+            <span class="n">configuration</span><span class="p">.</span><span class="n">ShowConfiguration</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span> 
+            <span class="k">return</span> <span class="n">configuration</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="kt">bool</span> <span class="n">ShowConfiguration</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="fields">Fields</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DefaultConfiguration</td>
+<td>IRocketConfiguration</td>
+<td>Return the default configuration, used to create the configuration file</td>
+</tr>
+</tbody></table>
+
           <h1 id="command">Command</h1>
 
           <h1 id="components">Components</h1>
