@@ -39,7 +39,7 @@ Name | Type | Default
 ---------- | ---------- | ----------
 Loaded | boolean | Is true as soon as translation & configuration is initialized
 
-## RocketPlugin<IRocketConfiguration>
+## RocketPlugin&lt;IRocketConfiguration&gt;
 > Specify a implementation of the interface IRocketConfiguration as type parameter
 
 ```csharp
@@ -82,5 +82,5 @@ See <a href="#IRocketConfiguration">IRocketConfiguration</a> for details on how 
 Name | Type | Default
 ---------- | ---------- | ----------
 PlayerInstance | RocketPlayer | Current RocketPlayer instance
-Configuration | <IRocketConfiguration> | Contains the values from your configuration
+Configuration | &lt;IRocketConfiguration&gt; | Contains the values from your configuration
 
