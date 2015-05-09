@@ -16,26 +16,30 @@ search: true
 
 # Introduction
 
-Welcome to the Rocket API! You can use our API to access Rocket API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Rocket API! You can use our API to access Rocket API endpoints, which can get information on various information about players and objects in Unturned.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The API is written in C# and only supports C#! You can view code examples for using the parts of the API in the dark area to the right.
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This is bound to change as Rocket is a constant work in progress and this documentation may be outdated.
 
-# Authentication
-
-> To authorize, use this code:
+# Components
+## RocketPlayerComponent
+> To use, your class should inherit from this component
 
 ```C#
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+public class PluginPlayer : RocketPlayerComponent {
+...rest of your class...
+}
 ```
 
+### Fields
+Name | Type | Default
+PlayerInstance | RocketPlayer | Current RocketPlayer instance
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+RocktPlayerComponent is a class that inherits from MonoBehaviour.  Children made from this component are applied to all players that connect to the server.  This allows plugins to attach/grab events for each player.
+* Awake, Start, Load, FixedUpdate, and Update are called to children of this component automatically by the game.
+* Attached to player on player OnPlayerConnect event, then fires the event to all others watching that event.
+* Removed from player on plugin unload or OnPlayerDisconnect.
 
 Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
