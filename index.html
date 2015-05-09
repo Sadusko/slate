@@ -59,20 +59,20 @@
 <blockquote>
 <p>To use, your class should inherit from this component</p>
 </blockquote>
-<pre class="highlight plaintext"><code>public class PluginPlayer : RocketPlayerComponent {
+<pre class="highlight csharp"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">PluginPlayer</span> <span class="p">:</span> <span class="n">RocketPlayerComponent</span> <span class="p">{</span>
 
-    public bool HasKitten;
+    <span class="k">public</span> <span class="kt">bool</span> <span class="n">HasKitten</span><span class="p">;</span>
 
-    public void Load() {
-        this.HasKitten = true;
-    }
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Load</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">HasKitten</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    public void FixedUpdate() {
-        if (this.Loaded &amp;&amp; this.HasKitten) {
-            RocketChatManager.Say(this.PlayerInstance, "You have a kitten!");
-        }
-    }
-}
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">FixedUpdate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Loaded</span> <span class="p">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="n">HasKitten</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">PlayerInstance</span><span class="p">,</span> <span class="s">"You have a kitten!"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 
 <h3 id="fields">Fields</h3>
