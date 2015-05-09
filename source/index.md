@@ -26,9 +26,20 @@ This is bound to change as Rocket is a constant work in progress and this docume
 ## RocketPlayerComponent
 > To use, your class should inherit from this component
 
-```c#
+```C#
 public class PluginPlayer : RocketPlayerComponent {
-...rest of your class...
+
+	public bool HasKitten;
+	
+	public void Load() {
+		this.HasKitten = true;
+	}
+	
+	public void FixedUpdate() {
+		if (this.Loaded && this.HasKitten) {
+			RocketChatManager.Say(this.PlayerInstance, "You have a kitten!");
+		}
+	}
 }
 ```
 
@@ -36,11 +47,6 @@ public class PluginPlayer : RocketPlayerComponent {
 Name | Type | Default
 ---------- | ---------- | ----------
 PlayerInstance | RocketPlayer | Current RocketPlayer instance
-
-RocktPlayerComponent is a class that inherits from MonoBehaviour.  Children made from this component are applied to all players that connect to the server.  This allows plugins to attach/grab events for each player.
-* Awake, Start, Load, FixedUpdate, and Update are called to children of this component automatically by the game.
-* Attached to player on player OnPlayerConnect event, then fires the event to all others watching that event.
-* Removed from player on plugin unload or OnPlayerDisconnect.
 
 Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
