@@ -26,7 +26,7 @@ This is bound to change as Rocket is a constant work in progress and this docume
 ## RocketPlayerComponent
 > To use, your class should inherit from this component
 
-```c#
+```csharp
 public class PluginPlayer : RocketPlayerComponent {
 
 	public bool HasKitten;
