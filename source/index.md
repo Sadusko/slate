@@ -14,6 +14,7 @@ includes:
   - command
   - components
   - player
+  - logging
 
 search: true
 ---
