@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs:
-  - C#
+  - csharp
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -26,7 +26,7 @@ This is bound to change as Rocket is a constant work in progress and this docume
 ## RocketPlayerComponent
 > To use, your class should inherit from this component
 
-```C#
+```csharp
 public class PluginPlayer : RocketPlayerComponent {
 ...rest of your class...
 }
