@@ -9,7 +9,11 @@ toc_footers:
 
 includes:
   - introduction
+  - plugin
+  - configuration
+  - command
   - components
+  - player
 
 search: true
 ---
