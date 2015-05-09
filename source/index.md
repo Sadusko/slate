@@ -34,6 +34,7 @@ public class PluginPlayer : RocketPlayerComponent {
 
 ### Fields
 Name | Type | Default
+---------- | ---------- | ----------
 PlayerInstance | RocketPlayer | Current RocketPlayer instance
 
 RocktPlayerComponent is a class that inherits from MonoBehaviour.  Children made from this component are applied to all players that connect to the server.  This allows plugins to attach/grab events for each player.
