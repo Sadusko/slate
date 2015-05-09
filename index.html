@@ -54,6 +54,119 @@
 
           <h1 id="plugin">Plugin</h1>
 
+<h2 id="rocketplugin">RocketPlugin</h2>
+
+<blockquote>
+<p>If you want to use a configuration, choose RocketPlugin<IRocketConfiguration></p>
+</blockquote>
+<pre class="highlight csharp"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">MyFancyPlugin</span> <span class="p">:</span> <span class="n">RocketPlugin</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="n">MyFancyPlugin</span> <span class="n">Instance</span><span class="p">;</span>
+    <span class="k">private</span> <span class="kt">bool</span> <span class="n">messageSent</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Load</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Instance</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Unload</span><span class="p">(){</span>
+        <span class="c1">//Clean up your mess before the plugin is unloaded
+</span>    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">FixedUpdate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Loaded</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="k">this</span><span class="p">.</span><span class="n">messageSent</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="nf">Translate</span><span class="p">(</span><span class="s">"myfancyplugin_message"</span><span class="p">));</span>
+            <span class="n">messageSent</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">DefaultTranslations</span><span class="p">{</span>
+        <span class="k">get</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;(){</span>
+                <span class="p">{</span><span class="s">"myfancyplugin_message"</span><span class="p">,</span><span class="s">"Hi Dave."</span><span class="p">}</span>
+            <span class="p">};</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="fields">Fields</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Loaded</td>
+<td>boolean</td>
+<td>Is true as soon as translation &amp; configuration is initialized</td>
+</tr>
+</tbody></table>
+
+<h2 id="rocketplugin">RocketPlugin<IRocketConfiguration></h2>
+
+<blockquote>
+<p>Specify a implementation of the interface IRocketConfiguration as type parameter</p>
+</blockquote>
+<pre class="highlight csharp"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">MyFancyPlugin</span> <span class="p">:</span> <span class="n">RocketPlugin</span><span class="p">&lt;</span><span class="n">MyFancyConfiguration</span><span class="p">&gt;</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="n">MyFancyPlugin</span> <span class="n">Instance</span><span class="p">;</span>
+    <span class="k">private</span> <span class="kt">bool</span> <span class="n">messageSent</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Load</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Instance</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Unload</span><span class="p">(){</span>
+        <span class="c1">//Clean up your mess before the plugin is unloaded
+</span>    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">FixedUpdate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Loaded</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="k">this</span><span class="p">.</span><span class="n">messageSent</span> <span class="p">&amp;&amp;</span> <span class="n">Configuration</span><span class="p">.</span><span class="n">ShowConfiguration</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="nf">Translate</span><span class="p">(</span><span class="s">"myfancyplugin_message"</span><span class="p">,</span><span class="m">42</span><span class="p">));</span>
+            <span class="n">messageSent</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">DefaultTranslations</span><span class="p">{</span>
+        <span class="k">get</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;(){</span>
+                <span class="p">{</span><span class="s">"myfancyplugin_message"</span><span class="p">,</span><span class="s">"The number is: {0}"</span><span class="p">}</span>
+            <span class="p">};</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<aside class="notice">
+See <a href="#IRocketConfiguration">IRocketConfiguration</a> for details on how to create a configuration class 
+</aside>
+
+<h3 id="fields">Fields</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PlayerInstance</td>
+<td>RocketPlayer</td>
+<td>Current RocketPlayer instance</td>
+</tr>
+<tr>
+<td>Configuration</td>
+<td><IRocketConfiguration></td>
+<td>Contains the values from your configuration</td>
+</tr>
+</tbody></table>
+
           <h1 id="configuration">Configuration</h1>
 
           <h1 id="command">Command</h1>
@@ -104,6 +217,54 @@ Include Rocket.Components in your references.
 </aside>
 
           <h1 id="player">Player</h1>
+
+          <h1 id="logging">Logging</h1>
+
+<h2 id="logger">Logger</h2>
+<pre class="highlight csharp"><code><span class="n">Logger</span><span class="p">.</span><span class="nf">LogError</span><span class="p">(</span><span class="n">ErrorMessage</span><span class="p">);</span>
+<span class="n">Logger</span><span class="p">.</span><span class="nf">LogException</span><span class="p">(</span><span class="n">Exception</span><span class="p">);</span>
+<span class="n">Logger</span><span class="p">.</span><span class="nf">LogWarning</span><span class="p">(</span><span class="n">Warning</span><span class="p">);</span>
+<span class="n">Logger</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">Exception</span><span class="p">)</span>
+<span class="n">Logger</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">Message</span><span class="p">);</span>
+</code></pre>
+
+<p>Sends a message to the console and to save in the log.</p>
+
+<h3 id="methods">Methods</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Parameters</th>
+<th>Output</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Log</td>
+<td>string</td>
+<td>white string to console</td>
+</tr>
+<tr>
+<td>Log</td>
+<td>exception</td>
+<td>red exception error to console</td>
+</tr>
+<tr>
+<td>LogException</td>
+<td>exception</td>
+<td>red exception error to console</td>
+</tr>
+<tr>
+<td>LogError</td>
+<td>string</td>
+<td>red error to console</td>
+</tr>
+<tr>
+<td>LogWarning</td>
+<td>string</td>
+<td>yellow string to console</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
