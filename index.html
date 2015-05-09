@@ -66,8 +66,19 @@
 
 <h3 id="fields">Fields</h3>
 
-<p>Name | Type | Default
-PlayerInstance | RocketPlayer | Current RocketPlayer instance</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PlayerInstance</td>
+<td>RocketPlayer</td>
+<td>Current RocketPlayer instance</td>
+</tr>
+</tbody></table>
 
 <p>RocktPlayerComponent is a class that inherits from MonoBehaviour.  Children made from this component are applied to all players that connect to the server.  This allows plugins to attach/grab events for each player.
 * Awake, Start, Load, FixedUpdate, and Update are called to children of this component automatically by the game.
