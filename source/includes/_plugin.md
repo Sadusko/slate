@@ -75,7 +75,7 @@ public class MyFancyPlugin : RocketPlugin<MyFancyConfiguration> {
 ```
 
 <aside class="notice">
-See <a href="#IRocketConfiguration">IRocketConfiguration</a> for details on how to create a configuration class 
+See <a href="#rocketplugin<irocketconfiguration>">IRocketConfiguration</a> for details on how to create a configuration class 
 </aside>
 
 ### Fields
