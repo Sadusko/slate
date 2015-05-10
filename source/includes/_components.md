@@ -3,7 +3,7 @@
 > To use, your class should inherit from this component
 
 ```csharp
-public class PluginPlayer : RocketPlayerComponent {
+public class MyFancyPlayer : RocketPlayerComponent {
 
 	public bool HasKitten;
 	
@@ -13,7 +13,7 @@ public class PluginPlayer : RocketPlayerComponent {
 	
 	public void FixedUpdate() {
 		if (this.Loaded && this.HasKitten) {
-			RocketChatManager.Say(this.PlayerInstance, "You have a kitten!");
+			RocketChatManager.Say(this.PlayerInstance, MyFancyPlugin.Instance.Translate("myfancyplugin_message", 12));
 		}
 	}
 }
