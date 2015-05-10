@@ -204,6 +204,99 @@ See <a href="#rocketplugin&lt;irocketconfiguration&gt;">IRocketConfiguration</a>
 
           <h1 id="command">Command</h1>
 
+<h2 id="irocketcommand">IRocketCommand</h2>
+<pre class="highlight csharp"><code>    <span class="k">public</span> <span class="k">class</span> <span class="nc">CommandAheal</span> <span class="p">:</span> <span class="n">IRocketCommand</span> <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">bool</span> <span class="n">RunFromConsole</span> <span class="p">{</span>
+            <span class="k">get</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span>
+            <span class="k">get</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s">"aheal"</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Help</span> <span class="p">{</span>
+            <span class="k">get</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s">"Heals you if you are admin and sets you god and vanished."</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Run the command.
+</span>        <span class="k">public</span> <span class="k">void</span> <span class="nf">Execute</span><span class="p">(</span><span class="n">RocketPlayer</span> <span class="n">caller</span><span class="p">,</span> <span class="kt">string</span><span class="p">[]</span> <span class="n">command</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">caller</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">Logger</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"This command cannot be called from the console."</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">command</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="s">"This command is only for yourself."</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">// Check if Admin
+</span>            <span class="k">if</span> <span class="p">(</span><span class="n">caller</span><span class="p">.</span><span class="n">IsAdmin</span> <span class="p">&amp;&amp;</span> <span class="n">caller</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">RocketPlayer</span><span class="p">.</span><span class="nf">FromName</span><span class="p">(</span><span class="n">command</span><span class="p">[</span><span class="m">0</span><span class="p">])))</span> <span class="p">{</span>
+                <span class="n">caller</span><span class="p">.</span><span class="n">Features</span><span class="p">.</span><span class="n">GodMode</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+                <span class="n">caller</span><span class="p">.</span><span class="n">Features</span><span class="p">.</span><span class="n">VanishMode</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+                <span class="n">caller</span><span class="p">.</span><span class="n">Infection</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+                <span class="n">caller</span><span class="p">.</span><span class="n">Hunger</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+                <span class="n">caller</span><span class="p">.</span><span class="n">Thirst</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+                <span class="n">caller</span><span class="p">.</span><span class="n">Freezing</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+                <span class="n">caller</span><span class="p">.</span><span class="nf">Heal</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+                <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="n">String</span><span class="p">.</span><span class="nf">Format</span><span class="p">(</span><span class="s">"You are an Admin {0} [{1}], and now a vanished god at full health."</span><span class="p">),</span> <span class="n">caller</span><span class="p">.</span><span class="n">CharacterName</span><span class="p">,</span> <span class="n">caller</span><span class="p">.</span><span class="n">SteamName</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="n">String</span><span class="p">.</span><span class="nf">Format</span><span class="p">(</span><span class="s">"For trying to call this admin-only command, you get more zombies {0} [{1}]!"</span><span class="p">,</span> <span class="n">caller</span><span class="p">.</span><span class="n">CharacterName</span><span class="p">,</span> <span class="n">caller</span><span class="p">.</span><span class="n">SteamName</span><span class="p">));</span>
+                <span class="n">caller</span><span class="p">.</span><span class="nf">GiveZombie</span><span class="p">(</span><span class="m">50</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+</code></pre>
+
+<p>An interface to create a command.</p>
+
+<h3 id="properties">Properties</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>RunFromConsole</td>
+<td>bool</td>
+<td>true only if want to run from console</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>string</td>
+<td>The command name.</td>
+</tr>
+<tr>
+<td>Help</td>
+<td>string</td>
+<td>The help info for the command.</td>
+</tr>
+</tbody></table>
+
+<h3 id="methods">Methods</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Parameters</th>
+<th>Output</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Execute</td>
+<td>RocketPlayer, string[]</td>
+<td>none</td>
+<td>Executes the command, RocketPlayer is null if called in the console</td>
+</tr>
+</tbody></table>
+
           <h1 id="components">Components</h1>
 
 <h2 id="rocketplayercomponent">RocketPlayerComponent</h2>
@@ -250,6 +343,346 @@ Include Rocket.Components in your references.
 </aside>
 
           <h1 id="player">Player</h1>
+
+<h2 id="rocketplayer">RocketPlayer</h2>
+
+<p>An extension for most used player info and methods.</p>
+<pre class="highlight csharp"><code><span class="c1">// Run the command.
+</span><span class="k">public</span> <span class="k">void</span> <span class="nf">Execute</span><span class="p">(</span><span class="n">RocketPlayer</span> <span class="n">caller</span><span class="p">,</span> <span class="kt">string</span><span class="p">[]</span> <span class="n">command</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">caller</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Logger</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"This command cannot be called from the console."</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">command</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="s">"This command is only for yourself."</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// Check if Admin
+</span>    <span class="k">if</span> <span class="p">(</span><span class="n">caller</span><span class="p">.</span><span class="n">IsAdmin</span> <span class="p">&amp;&amp;</span> <span class="n">caller</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">RocketPlayer</span><span class="p">.</span><span class="nf">FromName</span><span class="p">(</span><span class="n">command</span><span class="p">[</span><span class="m">0</span><span class="p">])))</span> <span class="p">{</span>
+        <span class="n">caller</span><span class="p">.</span><span class="n">Features</span><span class="p">.</span><span class="n">GodMode</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="n">caller</span><span class="p">.</span><span class="n">Features</span><span class="p">.</span><span class="n">VanishMode</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="n">caller</span><span class="p">.</span><span class="n">Infection</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+        <span class="n">caller</span><span class="p">.</span><span class="n">Hunger</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+        <span class="n">caller</span><span class="p">.</span><span class="n">Thirst</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+        <span class="n">caller</span><span class="p">.</span><span class="n">Freezing</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+        <span class="n">caller</span><span class="p">.</span><span class="nf">Heal</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+        <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="n">String</span><span class="p">.</span><span class="nf">Format</span><span class="p">(</span><span class="s">"You are an Admin {0} [{1}], and now a vanished god at full health."</span><span class="p">),</span> <span class="n">caller</span><span class="p">.</span><span class="n">CharacterName</span><span class="p">,</span> <span class="n">caller</span><span class="p">.</span><span class="n">SteamName</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="n">String</span><span class="p">.</span><span class="nf">Format</span><span class="p">(</span><span class="s">"For trying to call this admin-only command, you get more zombies {0} [{1}]!"</span><span class="p">,</span> <span class="n">caller</span><span class="p">.</span><span class="n">CharacterName</span><span class="p">,</span> <span class="n">caller</span><span class="p">.</span><span class="n">SteamName</span><span class="p">));</span>
+        <span class="n">caller</span><span class="p">.</span><span class="nf">GiveZombie</span><span class="p">(</span><span class="m">50</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="properties">Properties</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>get or set</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Player</td>
+<td>Player</td>
+<td>SDG.Player Instance</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>CSteamID</td>
+<td>CSteamID</td>
+<td>Player&rsquo;s Steam ID</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>Features</td>
+<td>RocketPlayerFeatures</td>
+<td>Player&rsquo;s Features component</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>Events</td>
+<td>RocketPlayerEvents</td>
+<td>Player&rsquo;s Events component</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>Inventory</td>
+<td>PlayerInventory</td>
+<td>Player&rsquo;s Inventory</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>SteamGroupID</td>
+<td>CSteamID</td>
+<td>Player&rsquo;s Group ID</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>Groups</td>
+<td>List<Group></td>
+<td>List of Rocket groups belonged to</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>Permissions</td>
+<td>List<string></td>
+<td>List of permissions</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>IsAdmin</td>
+<td>bool</td>
+<td>true if admin, false otherwise</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>Position</td>
+<td>Vector3</td>
+<td>Player&rsquo;s position</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>Stance</td>
+<td>EPlayerStance</td>
+<td>Player&rsquo;s current stance</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>Rotation</td>
+<td>float</td>
+<td>Direction player is looking</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>Stamina</td>
+<td>byte</td>
+<td>Player&rsquo;s current stamina</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>CharacterName</td>
+<td>string</td>
+<td>Player&rsquo;s Character name</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>SteamName</td>
+<td>string</td>
+<td>Player&rsquo;s Steam name</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>Infection</td>
+<td>byte</td>
+<td>Player&rsquo;s Infection level</td>
+<td>get and set</td>
+</tr>
+<tr>
+<td>Experience</td>
+<td>uint</td>
+<td>Player&rsquo;s Experience</td>
+<td>get and set</td>
+</tr>
+<tr>
+<td>Health</td>
+<td>byte</td>
+<td>Player&rsquo;s Health</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>Hunger</td>
+<td>byte</td>
+<td>Player&rsquo;s Hunger</td>
+<td>get and set</td>
+</tr>
+<tr>
+<td>Thirst</td>
+<td>byte</td>
+<td>Player&rsquo;s Thirst</td>
+<td>get and set</td>
+</tr>
+<tr>
+<td>Broken</td>
+<td>bool</td>
+<td>Player&rsquo;s broken bones</td>
+<td>get and set</td>
+</tr>
+<tr>
+<td>Bleeding</td>
+<td>bool</td>
+<td>Player is bleeding</td>
+<td>get and set</td>
+</tr>
+<tr>
+<td>Dead</td>
+<td>bool</td>
+<td>Player is dead</td>
+<td>get only</td>
+</tr>
+<tr>
+<td>Freezing</td>
+<td>bool</td>
+<td>Player is freezing</td>
+<td>get only</td>
+</tr>
+</tbody></table>
+
+<h3 id="methods">Methods</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Parameters</th>
+<th>Output</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Equals</td>
+<td>RocketPlayer</td>
+<td>bool</td>
+<td>Check if 2 RocketPlayers are equal</td>
+</tr>
+<tr>
+<td>GetComponent<T></td>
+<td>Component</td>
+<td>Component</td>
+<td>Find instance of component type T</td>
+</tr>
+<tr>
+<td>(static)FromName</td>
+<td>string</td>
+<td>RocketPlayer</td>
+<td>Get RocketPlayer instance, null if not found</td>
+</tr>
+<tr>
+<td>(static)FromCSteamID</td>
+<td>CSteamID</td>
+<td>RocketPlayer</td>
+<td>Get RocketPlayer instance, null if not found</td>
+</tr>
+<tr>
+<td>(static)FromPlayer</td>
+<td>Player</td>
+<td>RocketPlayer</td>
+<td>Get RocketPlayer instance, null if not found</td>
+</tr>
+<tr>
+<td>(static)FromSteamPlayer</td>
+<td>SteamPlayer</td>
+<td>RocketPlayer</td>
+<td>Get RocketPlayer instance, null if not found</td>
+</tr>
+<tr>
+<td>GiveItem</td>
+<td>ushort, byte, bool=false</td>
+<td>bool</td>
+<td>Gives player (byte) of item id (ushort), success returns true</td>
+</tr>
+<tr>
+<td>GiveVehicle</td>
+<td>ushort</td>
+<td>bool</td>
+<td>Gives player 1 of vehicle id (ushort), success returns true</td>
+</tr>
+<tr>
+<td>GiveZombie</td>
+<td>byte</td>
+<td>none</td>
+<td>Gives this player (byte) zombie(s).</td>
+</tr>
+<tr>
+<td>HasPermission</td>
+<td>string</td>
+<td>bool</td>
+<td>Checks if player has permission (string), true if found</td>
+</tr>
+<tr>
+<td>Kick</td>
+<td>string</td>
+<td>none</td>
+<td>Kicks player for reason (string)</td>
+</tr>
+<tr>
+<td>Ban</td>
+<td>string, uint</td>
+<td>none</td>
+<td>Bans player for reason (string) and seconds (uint)</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>bool, RocketPlayer=null</td>
+<td>none</td>
+<td>Admins player if true, unadmins if false [caller (RocketPlayer)]</td>
+</tr>
+<tr>
+<td>Teleport</td>
+<td>RocketPlayer</td>
+<td>none</td>
+<td>Teleports player to another player (RocketPlayer)</td>
+</tr>
+<tr>
+<td>Teleport</td>
+<td>Vector3, float</td>
+<td>none</td>
+<td>Teleports player to position (Vector3) facing (float)</td>
+</tr>
+<tr>
+<td>Teleport</td>
+<td>string</td>
+<td>bool</td>
+<td>Teleports player to map node (string), success returns true</td>
+</tr>
+<tr>
+<td>Heal</td>
+<td>byte, bool?=null, bool?=null</td>
+<td>none</td>
+<td>Heals player by amount (byte), bleeding, and broken (bool? x2)</td>
+</tr>
+<tr>
+<td>Suicide</td>
+<td>none</td>
+<td>none</td>
+<td>Causes player to suicide</td>
+</tr>
+<tr>
+<td>Damage</td>
+<td>byte, Vector3, EDeathCause, ELimb, CSteamID</td>
+<td>EPlayerKill</td>
+<td>How player was killed</td>
+</tr>
+</tbody></table>
+
+<h2 id="rocketplayerfeatures">RocketPlayerFeatures</h2>
+
+<p>A set of features for players.  This is a sealed class and should be accessed through RocketPlayer.</p>
+
+<h3 id="properties">Properties</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>get/set</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>VanishMode</td>
+<td>bool</td>
+<td>false</td>
+<td>get and set</td>
+</tr>
+<tr>
+<td>GodMode</td>
+<td>bool</td>
+<td>false</td>
+<td>get and set</td>
+</tr>
+</tbody></table>
 
           <h1 id="logging">Logging</h1>
 
@@ -302,14 +735,12 @@ Include Rocket.Components in your references.
           <h1 id="chatmanager">ChatManager</h1>
 
 <h2 id="rocketchatmanager">RocketChatManager</h2>
-
-<blockquote>
-<p>Used to send or broadcast messages in chat.</p>
-</blockquote>
 <pre class="highlight csharp"><code><span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="s">"Message about how fancy I am here."</span><span class="p">);</span>
 <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">.</span><span class="n">CSteamID</span><span class="p">,</span> <span class="s">"Message about how fancy I am here."</span><span class="p">);</span>
 <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="s">"Broadcast about how fancy Rocket is."</span><span class="p">);</span>
 </code></pre>
+
+<p>Used to send or broadcast messages in chat.</p>
 
 <h3 id="methods">Methods</h3>
 
