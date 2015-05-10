@@ -3,7 +3,7 @@ RocketChatManager
 
 ```csharp
 RocketChatManager.Say(caller, "Message about how fancy I am here.");
-RocketChatManager.Say(caller.CSteamID, "Messaeg about how fancy I am here");
+RocketChatManager.Say(caller.CSteamID, "Message about how fancy I am here.");
 RocketChatManager.Say("Broadcast about how fancy Rocket is.");
 ```
 
