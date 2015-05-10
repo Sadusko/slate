@@ -8,7 +8,7 @@ public class MyFancyPlugin : RocketPlugin {
 	public static MyFancyPlugin Instance;
 	private bool messageSent = false;
 	
-	public void Load() {
+	protected override void Load() {
 		Instance = this;
 	}
 	
@@ -16,14 +16,14 @@ public class MyFancyPlugin : RocketPlugin {
 		//Clean up your mess before the plugin is unloaded
 	}
 	
-	public void FixedUpdate() {
+	private void FixedUpdate() {
 		if (this.Loaded && !this.messageSent) {
 			RocketChatManager.Say(Translate("myfancyplugin_message"));
 			messageSent = true;
 		}
 	}
 	
-	public override Dictionary<string, string> DefaultTranslations{
+	private override Dictionary<string, string> DefaultTranslations{
 		get
 		{
 			return new Dictionary<string, string>(){
@@ -48,7 +48,7 @@ public class MyFancyPlugin : RocketPlugin<MyFancyConfiguration> {
 	public static MyFancyPlugin Instance;
 	private bool messageSent = false;
 	
-	public void Load() {
+	protected override void Load() {
 		Instance = this;
 	}
 	
@@ -56,14 +56,14 @@ public class MyFancyPlugin : RocketPlugin<MyFancyConfiguration> {
 		//Clean up your mess before the plugin is unloaded
 	}
 	
-	public void FixedUpdate() {
+	private void FixedUpdate() {
 		if (this.Loaded && !this.messageSent && Configuration.ShowConfiguration) {
 			RocketChatManager.Say(Translate("myfancyplugin_message",42));
 			messageSent = true;
 		}
 	}
 	
-	public override Dictionary<string, string> DefaultTranslations{
+	private override Dictionary<string, string> DefaultTranslations{
 		get
 		{
 			return new Dictionary<string, string>(){
