@@ -16,6 +16,7 @@ includes:
   - components
   - player
   - logging
+  - chat
 
 search: true
 ---
