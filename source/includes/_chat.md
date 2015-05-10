@@ -1,7 +1,6 @@
 # ChatManager
 ##RocketChatManager
-
-Used to send or broadcast messages in chat.
+> Used to send or broadcast messages in chat.
 
 ```csharp
 RocketChatManager.Say(caller, "Message about how fancy I am here.");
