@@ -1,5 +1,6 @@
 # ChatManager
 ##RocketChatManager
+
 Used to send or broadcast messages in chat.
 
 ```csharp
