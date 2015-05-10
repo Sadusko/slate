@@ -302,8 +302,9 @@ Include Rocket.Components in your references.
           <h1 id="chatmanager">ChatManager</h1>
 
 <p>RocketChatManager</p>
-<pre class="highlight csharp"><code><span class="c1">//Targets a specified player - In this case the user who issued the command
-</span><span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="s">"Message about how fancy I am here."</span><span class="p">);</span>
+<pre class="highlight csharp"><code><span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="s">"Message about how fancy I am here."</span><span class="p">);</span>
+<span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">.</span><span class="n">CSteamID</span><span class="p">,</span> <span class="s">"Messaeg about how fancy I am here"</span><span class="p">);</span>
+<span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="s">"Broadcast about how fancy Rocket is."</span><span class="p">);</span>
 </code></pre>
 
 <h3 id="methods">Methods</h3>
@@ -319,6 +320,16 @@ Include Rocket.Components in your references.
 <td>Say</td>
 <td>player, string</td>
 <td>private message to player</td>
+</tr>
+<tr>
+<td>Say</td>
+<td>CSteamID, string</td>
+<td>private message to player</td>
+</tr>
+<tr>
+<td>Say</td>
+<td>string</td>
+<td>broadcasts message to server</td>
 </tr>
 </tbody></table>
 
