@@ -3,7 +3,7 @@
 > To use, your class should inherit from this component
 
 ```csharp
-public class MyFancyPlayer : RocketPlayerComponent {
+public class MyFancyPlayerComponent : RocketPlayerComponent {
 
 	public bool HasKitten;
 	
@@ -11,7 +11,7 @@ public class MyFancyPlayer : RocketPlayerComponent {
 		this.HasKitten = true;
 	}
 	
-	public void FixedUpdate() {
+	private void FixedUpdate() {
 		if (this.Loaded && this.HasKitten) {
 			RocketChatManager.Say(this.PlayerInstance, MyFancyPlugin.Instance.Translate("myfancyplugin_message", 12));
 		}
