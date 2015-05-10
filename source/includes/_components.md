@@ -7,7 +7,7 @@ public class MyFancyPlayer : RocketPlayerComponent {
 
 	public bool HasKitten;
 	
-	public void Load() {
+	private void Start() {
 		this.HasKitten = true;
 	}
 	
