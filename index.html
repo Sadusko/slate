@@ -211,7 +211,7 @@ See <a href="#IRocketConfiguration">IRocketConfiguration</a> for details on how 
 <blockquote>
 <p>To use, your class should inherit from this component</p>
 </blockquote>
-<pre class="highlight csharp"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">MyFancyPlayer</span> <span class="p">:</span> <span class="n">RocketPlayerComponent</span> <span class="p">{</span>
+<pre class="highlight csharp"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">MyFancyPlayerComponent</span> <span class="p">:</span> <span class="n">RocketPlayerComponent</span> <span class="p">{</span>
 
     <span class="k">public</span> <span class="kt">bool</span> <span class="n">HasKitten</span><span class="p">;</span>
 
@@ -219,7 +219,7 @@ See <a href="#IRocketConfiguration">IRocketConfiguration</a> for details on how 
         <span class="k">this</span><span class="p">.</span><span class="n">HasKitten</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">FixedUpdate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">FixedUpdate</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Loaded</span> <span class="p">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="n">HasKitten</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">PlayerInstance</span><span class="p">,</span> <span class="n">MyFancyPlugin</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="nf">Translate</span><span class="p">(</span><span class="s">"myfancyplugin_message"</span><span class="p">,</span> <span class="m">12</span><span class="p">));</span>
         <span class="p">}</span>
