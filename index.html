@@ -299,30 +299,39 @@ Include Rocket.Components in your references.
 </tr>
 </tbody></table>
 
-          # ChatManager
-RocketChatManager
+          <h1 id="chatmanager">ChatManager</h1>
 
-```csharp
-public class CommandFancyMe : IRocketCommand
-{
-  public bool RunFromConsole { get { return false; } }
-  public string Name { get { return "FancyMe"; } }
-  public string Help { get { return "My fancy helpful info."; } }
-  public CommandFancyMe() {}
-  
-  public void Execute(RocketPlayer caller, string[] Args)
-  {
-    //Targets a specified player - In this case the user who issued the command
-    RocketChatManager.Say(caller, "Message about how fancy I am here.");
-  }
-}
-```
+<p>RocketChatManager</p>
+<pre class="highlight csharp"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">CommandFancyMe</span> <span class="p">:</span> <span class="n">IRocketCommand</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="kt">bool</span> <span class="n">RunFromConsole</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">false</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="s">"FancyMe"</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">Help</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="s">"My fancy helpful info."</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="nf">CommandFancyMe</span><span class="p">()</span> <span class="p">{}</span>
 
-### Fields
-Name | Type | Default
----------- | ---------- | ----------
-ChatManager | RocketChatManager | Returns a specified string or value to the server or a player
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Execute</span><span class="p">(</span><span class="n">RocketPlayer</span> <span class="n">caller</span><span class="p">,</span> <span class="kt">string</span><span class="p">[]</span> <span class="n">Args</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">//Targets a specified player - In this case the user who issued the command
+</span>    <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="s">"Message about how fancy I am here."</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 
+<h3 id="fields">Fields</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ChatManager</td>
+<td>RocketChatManager</td>
+<td>Returns a specified string or value to the server or a player</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
