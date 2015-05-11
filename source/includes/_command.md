@@ -36,7 +36,6 @@
 				caller.Infection = 0;
 				caller.Hunger = 0;
 				caller.Thirst = 0;
-				caller.Freezing = 0;
 				caller.Heal(100, true, true);
 				RocketChatManager.Say(caller, String.Format("You are an Admin {0} [{1}], and now a vanished god at full health."), caller.CharacterName, caller.SteamName);
 			} else {
