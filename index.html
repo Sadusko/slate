@@ -239,7 +239,6 @@ See <a href="#rocketplugin&lt;irocketconfiguration&gt;">IRocketConfiguration</a>
                 <span class="n">caller</span><span class="p">.</span><span class="n">Infection</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
                 <span class="n">caller</span><span class="p">.</span><span class="n">Hunger</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
                 <span class="n">caller</span><span class="p">.</span><span class="n">Thirst</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-                <span class="n">caller</span><span class="p">.</span><span class="n">Freezing</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
                 <span class="n">caller</span><span class="p">.</span><span class="nf">Heal</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
                 <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="n">String</span><span class="p">.</span><span class="nf">Format</span><span class="p">(</span><span class="s">"You are an Admin {0} [{1}], and now a vanished god at full health."</span><span class="p">),</span> <span class="n">caller</span><span class="p">.</span><span class="n">CharacterName</span><span class="p">,</span> <span class="n">caller</span><span class="p">.</span><span class="n">SteamName</span><span class="p">);</span>
             <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -364,7 +363,6 @@ Include Rocket.Components in your references.
         <span class="n">caller</span><span class="p">.</span><span class="n">Infection</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
         <span class="n">caller</span><span class="p">.</span><span class="n">Hunger</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
         <span class="n">caller</span><span class="p">.</span><span class="n">Thirst</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-        <span class="n">caller</span><span class="p">.</span><span class="n">Freezing</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
         <span class="n">caller</span><span class="p">.</span><span class="nf">Heal</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
         <span class="n">RocketChatManager</span><span class="p">.</span><span class="nf">Say</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="n">String</span><span class="p">.</span><span class="nf">Format</span><span class="p">(</span><span class="s">"You are an Admin {0} [{1}], and now a vanished god at full health."</span><span class="p">),</span> <span class="n">caller</span><span class="p">.</span><span class="n">CharacterName</span><span class="p">,</span> <span class="n">caller</span><span class="p">.</span><span class="n">SteamName</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -553,25 +551,25 @@ Include Rocket.Components in your references.
 <td>Find instance of component type T</td>
 </tr>
 <tr>
-<td>(static)FromName</td>
+<td>FromName</td>
 <td>string</td>
 <td>RocketPlayer</td>
 <td>Get RocketPlayer instance, null if not found</td>
 </tr>
 <tr>
-<td>(static)FromCSteamID</td>
+<td>FromCSteamID</td>
 <td>CSteamID</td>
 <td>RocketPlayer</td>
 <td>Get RocketPlayer instance, null if not found</td>
 </tr>
 <tr>
-<td>(static)FromPlayer</td>
+<td>FromPlayer</td>
 <td>Player</td>
 <td>RocketPlayer</td>
 <td>Get RocketPlayer instance, null if not found</td>
 </tr>
 <tr>
-<td>(static)FromSteamPlayer</td>
+<td>FromSteamPlayer</td>
 <td>SteamPlayer</td>
 <td>RocketPlayer</td>
 <td>Get RocketPlayer instance, null if not found</td>
