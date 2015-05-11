@@ -21,7 +21,6 @@ public void Execute(RocketPlayer caller, string[] command) {
 		caller.Infection = 0;
 		caller.Hunger = 0;
 		caller.Thirst = 0;
-		caller.Freezing = 0;
 		caller.Heal(100, true, true);
 		RocketChatManager.Say(caller, String.Format("You are an Admin {0} [{1}], and now a vanished god at full health."), caller.CharacterName, caller.SteamName);
 	} else {
@@ -65,10 +64,10 @@ Name | Parameters | Output | Description
 ---------- | ---------- | ---------- | ----------
 Equals | RocketPlayer | bool | Check if 2 RocketPlayers are equal
 GetComponent<T> | Component | Component | Find instance of component type T
-(static)FromName | string | RocketPlayer | Get RocketPlayer instance, null if not found
-(static)FromCSteamID | CSteamID | RocketPlayer | Get RocketPlayer instance, null if not found
-(static)FromPlayer | Player | RocketPlayer | Get RocketPlayer instance, null if not found
-(static)FromSteamPlayer | SteamPlayer | RocketPlayer | Get RocketPlayer instance, null if not found
+FromName | string | RocketPlayer | Get RocketPlayer instance, null if not found
+FromCSteamID | CSteamID | RocketPlayer | Get RocketPlayer instance, null if not found
+FromPlayer | Player | RocketPlayer | Get RocketPlayer instance, null if not found
+FromSteamPlayer | SteamPlayer | RocketPlayer | Get RocketPlayer instance, null if not found
 GiveItem | ushort, byte, bool=false | bool | Gives player (byte) of item id (ushort), success returns true
 GiveVehicle | ushort | bool | Gives player 1 of vehicle id (ushort), success returns true
 GiveZombie | byte | none | Gives this player (byte) zombie(s).
